@@ -6,14 +6,15 @@ import { redirect } from "next/navigation";
 import { SearchUsers } from "./search-users";
 import { clerkClient } from "@clerk/nextjs/server";
 import { UpdateUserRolesForm } from "./update-user-roles-form";
-import { checkRole } from "@/lib/auth-utils";
+import { checkRoles } from "@/lib/server/auth-utils";
+import { SUPER_ADMIN_ROLES } from "@/constants/auth";
 
 export const ClerkUsers: React.FC<AdminViewProps> = async ({
   initPageResult,
   params,
   searchParams,
 }) => {
-  if (!(await checkRole(["super-admin"]))) {
+  if (!(await checkRoles(SUPER_ADMIN_ROLES))) {
     redirect("/");
   }
 

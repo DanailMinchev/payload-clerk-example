@@ -2,7 +2,7 @@
 
 import { updateRoles, UpdateUserRolesState } from "./actions";
 import React, { useActionState } from "react";
-import { ROLES } from "@/constants/auth";
+import { ALL_ROLES } from "@/constants/auth";
 
 interface UpdateUserRolesFormProps {
   userId: string;
@@ -31,7 +31,7 @@ export const UpdateUserRolesForm: React.FC<UpdateUserRolesFormProps> = ({
       </div>
       <fieldset>
         <legend aria-describedby="roles-error">Roles:</legend>
-        {ROLES.map((role) => (
+        {ALL_ROLES.map((role) => (
           <div key={role}>
             <input
               type="checkbox"

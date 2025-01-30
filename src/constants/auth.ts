@@ -1,1 +1,19 @@
-export const ROLES = ["super-admin", "admin", "editor"] as const;
+import { Role } from "@/types/globals";
+
+export const SUPER_ADMIN_ROLE = "super-admin";
+
+export const ADMIN_ROLE = "admin";
+
+export const EDITOR_ROLE = "editor";
+
+export const ALL_ROLES = [SUPER_ADMIN_ROLE, ADMIN_ROLE, EDITOR_ROLE] as const;
+
+export const ADMIN_ENABLED_ROLES: Role[] = [
+  SUPER_ADMIN_ROLE,
+  ADMIN_ROLE,
+  EDITOR_ROLE,
+];
+
+export const ADMIN_ROLES: Role[] = [SUPER_ADMIN_ROLE, ADMIN_ROLE];
+
+export const SUPER_ADMIN_ROLES: Role[] = [SUPER_ADMIN_ROLE];

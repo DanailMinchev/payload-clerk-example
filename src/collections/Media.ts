@@ -1,7 +1,7 @@
 import type { CollectionConfig } from "payload";
-import { isAdminEnabledRoles } from "./lib/access/isAdminEnabledRoles";
-import { isAllowed } from "./lib/access/isAllowed";
-import { isAdminRoles } from "./lib/access/isAdminRoles";
+import { isAdminEnabledRoles } from "./lib/access/is-admin-enabled-roles";
+import { isAllowed } from "./lib/access/is-allowed";
+import { isAdminRoles } from "./lib/access/is-admin-roles";
 
 export const Media: CollectionConfig = {
   slug: "media",

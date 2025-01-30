@@ -1,15 +1,13 @@
 import { Role } from "@/types/globals";
-import { auth } from "@clerk/nextjs/server";
 
-export const checkRole = async (checkRoles: Role[] = []) => {
-  const { sessionClaims } = await auth();
-
-  if (sessionClaims?.metadata?.roles) {
+export const checkRoles = (
+  rolesToCheck: Role[] = [],
+  userRoles: Role[] = [],
+) => {
+  if (Array.isArray(userRoles) && userRoles.length > 0) {
     if (
-      checkRoles.some((checkRole) => {
-        return sessionClaims.metadata.roles?.some(
-          (sessionRole) => sessionRole === checkRole,
-        );
+      rolesToCheck.some((checkRole) => {
+        return userRoles.some((userRole) => userRole === checkRole);
       })
     ) {
       return true;

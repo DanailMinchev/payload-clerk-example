@@ -1,7 +1,7 @@
 import type { CollectionConfig } from "payload";
-import { isAdminEnabledRoles } from "./lib/access/isAdminEnabledRoles";
-import { isAdminEnabledRolesOrPublishedStatus } from "./lib/access/isAdminEnabledRolesOrPublishedStatus";
-import { isAdminRolesOrSelf } from "./lib/access/isAdminRolesOrSelf";
+import { isAdminEnabledRoles } from "./lib/access/is-admin-enabled-roles";
+import { isAdminEnabledRolesOrPublishedStatus } from "./lib/access/is-admin-enabled-roles-or-published-status";
+import { isAdminRolesOrSelf } from "./lib/access/is-admin-roles-or-self";
 
 export const Posts: CollectionConfig = {
   slug: "posts",

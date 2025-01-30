@@ -10,9 +10,27 @@ This is an example for Payload CMS and Clerk integration.
 
 1. Copy the `env.example` file into `.env.local` or `.env`
 
-2. Set the Clerk values in `.env.local` or `.env` and uncomment `DATABASE_URI` for `SQLite` or `PostgreSQL`
+2. Set Clerk environment variables [documentation](https://clerk.com/docs/deployments/clerk-environment-variables):
 
-3. If you selected the `PostgreSQL` you can use Docker:
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+
+Your Clerk app's Publishable Key, which you can find in the Clerk Dashboard. It will be prefixed with pk*test* in development instances and pk*live* in production instances.
+
+`CLERK_SECRET_KEY`
+
+Your Clerk app's Secret Key, which you can find in the Clerk Dashboard. It will be prefixed with sk*test* in development instances and sk*live* in production instances. Do not expose this on the frontend with a public environment variable.
+
+3. Set Payload environment variables [documentation](https://payloadcms.com/docs/getting-started/installation)
+
+`PAYLOAD_SECRET`
+
+This environmental variable acts as your secret key. It's paramount that you ensure its value is both secure and strong, as it's integral to the encryption and decryption process.
+
+`DATABASE_URI`
+
+This is the database connection string. Uncomment `DATABASE_URI` for `SQLite` or `PostgreSQL`.
+
+4. If you selected the `PostgreSQL` you can use Docker:
 
 ```bash
 docker compose up

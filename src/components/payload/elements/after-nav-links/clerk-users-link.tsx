@@ -3,17 +3,17 @@
 import React from "react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import { checkRoles } from "@/lib/auth-utils";
+import { SUPER_ADMIN_ROLES } from "@/constants/auth";
+import { Role } from "@/types/globals";
 
 export const ClerkUsersLink: React.FC = () => {
   const { isLoaded, user } = useUser();
 
-  if (!isLoaded) {
-    return null;
-  }
-
   if (
+    !isLoaded ||
     !user?.publicMetadata?.roles ||
-    !(user?.publicMetadata.roles as Array<string>).includes("super-admin")
+    !checkRoles(SUPER_ADMIN_ROLES, user.publicMetadata.roles as Array<Role>)
   ) {
     return null;
   }

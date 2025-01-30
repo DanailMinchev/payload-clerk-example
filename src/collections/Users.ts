@@ -1,8 +1,8 @@
 import type { CollectionConfig } from "payload";
 import { ClerkAuthStrategy } from "./lib/auth/clerk-strategy";
-import { isForbidden } from "./lib/access/isForbidden";
-import { isAllowed } from "./lib/access/isAllowed";
-import { isAdminEnabledRoles } from "./lib/access/isAdminEnabledRoles";
+import { isForbidden } from "./lib/access/is-forbidden";
+import { isAllowed } from "./lib/access/is-allowed";
+import { isAdminEnabledRoles } from "./lib/access/is-admin-enabled-roles";
 
 export const Users: CollectionConfig = {
   slug: "users",

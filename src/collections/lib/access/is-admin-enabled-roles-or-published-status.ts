@@ -1,4 +1,4 @@
-import { isAdminEnabledRoles } from "./isAdminEnabledRoles";
+import { isAdminEnabledRoles } from "./is-admin-enabled-roles";
 
 export const isAdminEnabledRolesOrPublishedStatus = async () => {
   if (await isAdminEnabledRoles()) {

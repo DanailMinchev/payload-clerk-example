@@ -1,12 +1,12 @@
 import { PayloadRequest } from "payload";
-import { checkRole } from "@/lib/auth-utils";
+import { isAdminRoles } from "./is-admin-roles";
 
 export const isAdminRolesOrSelf = async ({
   req: { user },
 }: {
   req: PayloadRequest;
 }) => {
-  if (await checkRole(["super-admin", "admin"])) {
+  if (await isAdminRoles()) {
     return true;
   }
 

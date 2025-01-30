@@ -3,7 +3,8 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { checkRole } from "@/lib/auth-utils";
+import { checkRoles } from "@/lib/server/auth-utils";
+import { SUPER_ADMIN_ROLES } from "@/constants/auth";
 
 const updateRolesSchema = z.object({
   roles: z
@@ -26,7 +27,7 @@ export async function updateRoles(
   formData: FormData,
 ): Promise<UpdateUserRolesState> {
   // Check that the user trying to set the role is an admin
-  if (!(await checkRole(["super-admin"]))) {
+  if (!(await checkRoles(SUPER_ADMIN_ROLES))) {
     return {
       errors: {},
       roles: null,
