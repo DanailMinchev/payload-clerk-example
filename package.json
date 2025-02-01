@@ -10,6 +10,7 @@
     "lint": "next lint",
     "format": "npx prettier . --write",
     "format:ci": "npx prettier . --check",
+    "test": "vitest",
     "payload:generate:importmap": "npx payload generate:importmap",
     "payload:generate:types": "npx payload generate:types"
   },
@@ -30,16 +31,22 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/react": "16.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "4.3.4",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "eslint-config-prettier": "^9.1.0",
+    "jsdom": "26.0.0",
     "postcss": "^8",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.11",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.0.4"
   }
 }
