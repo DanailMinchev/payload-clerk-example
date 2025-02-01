@@ -46,5 +46,11 @@ next-env.d.ts
 # Payload
 *.db
 
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # App
 docker/data/*

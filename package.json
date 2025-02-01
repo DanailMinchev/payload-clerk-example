@@ -11,6 +11,9 @@
     "format": "npx prettier . --write",
     "format:ci": "npx prettier . --check",
     "test": "vitest",
+    "playwright:test": "npx playwright test",
+    "playwright:test:debug": "npx playwright test --debug",
+    "playwright:test:ui": "npx playwright test --ui",
     "payload:generate:importmap": "npx payload generate:importmap",
     "payload:generate:types": "npx payload generate:types"
   },
@@ -31,6 +34,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "1.50.1",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.2.0",
     "@types/node": "^20",
