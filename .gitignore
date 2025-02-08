@@ -51,6 +51,7 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/playwright/.clerk/
 
 # App
 docker/data/*
