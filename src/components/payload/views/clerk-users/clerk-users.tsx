@@ -37,7 +37,7 @@ export const ClerkUsers: React.FC<AdminViewProps> = async ({
       visibleEntities={initPageResult.visibleEntities}
     >
       <Gutter>
-        <h1>Users</h1>
+        <h1>Clerk users</h1>
 
         <SearchUsers defaultSearchValue={searchParams.search as string} />
 

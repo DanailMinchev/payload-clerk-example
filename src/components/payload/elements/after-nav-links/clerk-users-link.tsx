@@ -18,7 +18,7 @@ export const ClerkUsersLink: React.FC = () => {
     return null;
   }
 
-  return <Link href="/admin/clerk-users">Users</Link>;
+  return <Link href="/admin/clerk-users">Clerk users</Link>;
 };
 
 export default ClerkUsersLink;

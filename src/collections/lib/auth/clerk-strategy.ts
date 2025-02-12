@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import {
   AuthStrategy,
   AuthStrategyFunctionArgs,
@@ -13,12 +13,13 @@ export async function getUser({
   payload: Payload;
 }): Promise<User | null> {
   const { userId }: { userId: string | null } = await auth();
+  const user = await currentUser();
 
-  if (!userId) {
+  if (!userId || !user) {
     return null;
   }
 
-  let currentUser;
+  let currentPayloadUser;
   const findUserQuery = await payload.find({
     collection: "users",
     where: {
@@ -28,19 +29,36 @@ export async function getUser({
     },
   });
   if (findUserQuery.docs.length === 0) {
-    currentUser = await payload.create({
+    const emailAddresses = [
+      ...new Set(
+        user.emailAddresses.map(
+          (userEmailAddress) => userEmailAddress.emailAddress,
+        ),
+      ),
+    ];
+    const phoneNumbers = [
+      ...new Set(
+        user.phoneNumbers.map((userPhoneNumber) => userPhoneNumber.phoneNumber),
+      ),
+    ];
+
+    currentPayloadUser = await payload.create({
       collection: "users",
       data: {
         clerkUserId: userId,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        emailAddresses,
+        phoneNumbers,
       },
     });
   } else {
-    currentUser = findUserQuery?.docs[0];
+    currentPayloadUser = findUserQuery?.docs[0];
   }
 
   return {
     collection: "users",
-    ...currentUser,
+    ...currentPayloadUser,
   };
 }
 

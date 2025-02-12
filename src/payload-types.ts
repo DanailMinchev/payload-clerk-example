@@ -66,6 +66,10 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   clerkUserId: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  emailAddresses?: string[] | null;
+  phoneNumbers?: string[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -167,6 +171,10 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   clerkUserId?: T;
+  firstName?: T;
+  lastName?: T;
+  emailAddresses?: T;
+  phoneNumbers?: T;
   updatedAt?: T;
   createdAt?: T;
 }

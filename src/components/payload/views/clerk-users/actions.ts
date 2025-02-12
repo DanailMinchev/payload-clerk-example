@@ -26,7 +26,6 @@ export async function updateRoles(
   prevState: UpdateUserRolesState,
   formData: FormData,
 ): Promise<UpdateUserRolesState> {
-  // Check that the user trying to set the role is an admin
   if (!(await checkRoles(SUPER_ADMIN_ROLES))) {
     return {
       errors: {},
