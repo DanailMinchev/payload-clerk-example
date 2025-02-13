@@ -8,6 +8,11 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: "clerkUserId",
     hidden: false,
+    baseListFilter: () => ({
+      isDeleted: {
+        not_equals: true,
+      },
+    }),
   },
   access: {
     create: isForbidden,
@@ -30,6 +35,16 @@ export const Users: CollectionConfig = {
       required: true,
       index: true,
       unique: true,
+    },
+    {
+      name: "isDeleted",
+      type: "checkbox",
+      label: "Deleted",
+      defaultValue: false,
+      required: true,
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "firstName",

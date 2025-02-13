@@ -46,6 +46,7 @@ export async function getUser({
       collection: "users",
       data: {
         clerkUserId: userId,
+        isDeleted: false,
         firstName: user.firstName,
         lastName: user.lastName,
         emailAddresses,
