@@ -81,7 +81,20 @@ export const Users: CollectionConfig = {
       admin: {
         components: {
           Field: {
-            path: "@/components/payload/fields/refresh-clerk-data-button/refresh-clerk-data-button#RefreshClerkDataButton",
+            path: "@/components/payload/fields/refresh-clerk-data-button/refresh-clerk-data-button-field#RefreshClerkDataButtonField",
+          },
+        },
+        disableListColumn: true,
+        position: "sidebar",
+      },
+    },
+    {
+      name: "updateClerkUserRoles",
+      type: "ui",
+      admin: {
+        components: {
+          Field: {
+            path: "@/components/payload/fields/update-clerk-user-roles/update-clerk-user-roles-field#UpdateClerkUserRolesField",
           },
         },
         disableListColumn: true,

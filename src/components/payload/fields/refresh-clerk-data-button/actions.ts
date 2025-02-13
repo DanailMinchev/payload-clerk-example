@@ -48,46 +48,48 @@ export async function refreshClerkData(
 
   const client = await clerkClient();
 
+  let foundClerkUser;
   try {
-    const foundClerkUser = await client.users.getUser(clerkUserId);
-
-    const emailAddresses = [
-      ...new Set(
-        foundClerkUser.emailAddresses.map(
-          (userEmailAddress) => userEmailAddress.emailAddress,
-        ),
-      ),
-    ];
-    const phoneNumbers = [
-      ...new Set(
-        foundClerkUser.phoneNumbers.map(
-          (userPhoneNumber) => userPhoneNumber.phoneNumber,
-        ),
-      ),
-    ];
-
-    await payload.update({
-      collection: "users",
-      id: foundPayloadUser.id,
-      data: {
-        firstName: foundClerkUser.firstName,
-        lastName: foundClerkUser.lastName,
-        emailAddresses,
-        phoneNumbers,
-      },
-    });
-
-    revalidatePath(`/admin/account`);
-    revalidatePath(`/admin/collections/users/${foundPayloadUser.id}`);
-
-    return {
-      isError: false,
-      message: "Refreshed successfully",
-    };
+    foundClerkUser = await client.users.getUser(clerkUserId);
   } catch (exception) {
+    console.error(exception);
     return {
       isError: true,
-      message: exception as string,
+      message: "Error retrieving Clerk user",
     };
   }
+
+  const emailAddresses = [
+    ...new Set(
+      foundClerkUser.emailAddresses.map(
+        (userEmailAddress) => userEmailAddress.emailAddress,
+      ),
+    ),
+  ];
+  const phoneNumbers = [
+    ...new Set(
+      foundClerkUser.phoneNumbers.map(
+        (userPhoneNumber) => userPhoneNumber.phoneNumber,
+      ),
+    ),
+  ];
+
+  await payload.update({
+    collection: "users",
+    id: foundPayloadUser.id,
+    data: {
+      firstName: foundClerkUser.firstName,
+      lastName: foundClerkUser.lastName,
+      emailAddresses,
+      phoneNumbers,
+    },
+  });
+
+  revalidatePath(`/admin/account`);
+  revalidatePath(`/admin/collections/users/${foundPayloadUser.id}`);
+
+  return {
+    isError: false,
+    message: "Clerk data refreshed successfully",
+  };
 }

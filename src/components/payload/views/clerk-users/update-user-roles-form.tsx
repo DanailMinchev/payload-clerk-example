@@ -3,6 +3,7 @@
 import { updateRoles, UpdateUserRolesState } from "./actions";
 import React, { useActionState } from "react";
 import { ALL_ROLES } from "@/constants/auth";
+import { Button } from "@payloadcms/ui";
 
 interface UpdateUserRolesFormProps {
   userId: string;
@@ -50,9 +51,9 @@ export const UpdateUserRolesForm: React.FC<UpdateUserRolesFormProps> = ({
             ))}
         </div>
       </fieldset>
-      <button type="submit" disabled={pending} style={{ marginTop: "10px" }}>
+      <Button type="submit" disabled={pending}>
         Update
-      </button>
+      </Button>
     </form>
   );
 };
