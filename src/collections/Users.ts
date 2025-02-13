@@ -8,6 +8,8 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: "clerkUserId",
     hidden: false,
+    defaultColumns: ["clerkUserId", "firstName", "lastName", "emailAddresses"],
+    listSearchableFields: ["clerkUserId", "emailAddresses", "phoneNumbers"],
     baseListFilter: () => ({
       isDeleted: {
         not_equals: true,
@@ -42,7 +44,10 @@ export const Users: CollectionConfig = {
       label: "Deleted",
       defaultValue: false,
       required: true,
+      index: true,
       admin: {
+        disableListColumn: true,
+        disableListFilter: true,
         position: "sidebar",
       },
     },
@@ -60,12 +65,14 @@ export const Users: CollectionConfig = {
       name: "emailAddresses",
       type: "text",
       label: "Email addresses",
+      index: true,
       hasMany: true,
     },
     {
       name: "phoneNumbers",
       type: "text",
       label: "Phone numbers",
+      index: true,
       hasMany: true,
     },
     {
@@ -77,6 +84,7 @@ export const Users: CollectionConfig = {
             path: "@/components/payload/fields/refresh-clerk-data-button/refresh-clerk-data-button#RefreshClerkDataButton",
           },
         },
+        disableListColumn: true,
         position: "sidebar",
       },
     },
