@@ -26,6 +26,9 @@ export default buildConfig({
           path: "@/components/payload/elements/log-out-button#LogOutButton",
         },
       },
+      beforeDashboard: [
+        "@/components/payload/elements/before-dashboard/welcome-panel#WelcomePanel",
+      ],
       afterNavLinks: [
         "@/components/payload/elements/after-nav-links/clerk-users-link#ClerkUsersLink",
       ],
