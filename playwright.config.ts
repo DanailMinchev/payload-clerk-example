@@ -27,8 +27,8 @@ export default defineConfig({
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  /* Retries */
+  retries: 5,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -50,19 +50,28 @@ export default defineConfig({
     },
 
     {
-      name: "chromium",
+      name: "api-tests",
+      testMatch: "tests/api-tests/**/*.spec.ts",
+      dependencies: ["global setup"],
+    },
+
+    {
+      name: "app-tests - chromium",
+      testMatch: "tests/app-tests/**/*.spec.ts",
       use: { ...devices["Desktop Chrome"] },
       dependencies: ["global setup"],
     },
 
     {
-      name: "firefox",
+      name: "app-tests - firefox",
+      testMatch: "tests/app-tests/**/*.spec.ts",
       use: { ...devices["Desktop Firefox"] },
       dependencies: ["global setup"],
     },
 
     {
-      name: "webkit",
+      name: "app-tests - webkit",
+      testMatch: "tests/app-tests/**/*.spec.ts",
       use: { ...devices["Desktop Safari"] },
       dependencies: ["global setup"],
     },

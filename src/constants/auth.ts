@@ -12,8 +12,8 @@ export const ADMIN_ENABLED_ROLES: Role[] = [
   SUPER_ADMIN_ROLE,
   ADMIN_ROLE,
   EDITOR_ROLE,
-];
+] as const;
 
-export const ADMIN_ROLES: Role[] = [SUPER_ADMIN_ROLE, ADMIN_ROLE];
+export const ADMIN_ROLES: Role[] = [SUPER_ADMIN_ROLE, ADMIN_ROLE] as const;
 
-export const SUPER_ADMIN_ROLES: Role[] = [SUPER_ADMIN_ROLE];
+export const SUPER_ADMIN_ROLES: Role[] = [SUPER_ADMIN_ROLE] as const;
