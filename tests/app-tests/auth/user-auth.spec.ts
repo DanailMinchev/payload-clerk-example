@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 
 // Use prepared Clerk auth state
-test.use({ storageState: "../playwright/.clerk/user-1.json" });
+test.use({ storageState: "playwright/.clerk/user-1.json" });
 
 test.describe("user auth tests", () => {
   test("dashboard test", async ({ page }) => {

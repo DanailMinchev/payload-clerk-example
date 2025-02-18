@@ -38,10 +38,11 @@ export const seed = async ({
   const foundClerkUsers = (
     await client.users.getUserList({
       emailAddress: [
+        process.env.E2E_CLERK_ALL_ROLES_USER_EMAIL!,
         process.env.E2E_CLERK_SUPER_ADMIN_USER_EMAIL!,
         process.env.E2E_CLERK_ADMIN_USER_EMAIL!,
         process.env.E2E_CLERK_EDITOR_USER_EMAIL!,
-        process.env.E2E_CLERK_APP_USER_EMAIL!,
+        process.env.E2E_CLERK_AUTHENTICATED_USER_EMAIL!,
       ],
     })
   ).data;
@@ -57,10 +58,11 @@ export const seed = async ({
     where: {
       emailAddresses: {
         in: [
+          process.env.E2E_CLERK_ALL_ROLES_USER_EMAIL,
           process.env.E2E_CLERK_SUPER_ADMIN_USER_EMAIL,
           process.env.E2E_CLERK_ADMIN_USER_EMAIL,
           process.env.E2E_CLERK_EDITOR_USER_EMAIL,
-          process.env.E2E_CLERK_APP_USER_EMAIL,
+          process.env.E2E_CLERK_AUTHENTICATED_USER_EMAIL,
         ],
       },
     },
@@ -71,10 +73,18 @@ export const seed = async ({
   await createUser({
     payload,
     clerkClient: client,
+    userEmailAddress: process.env.E2E_CLERK_ALL_ROLES_USER_EMAIL!,
+    userPhoneNumber: process.env.E2E_CLERK_ALL_ROLES_USER_PHONE!,
+    userPassword: process.env.E2E_CLERK_ALL_ROLES_USER_PASSWORD!,
+    roles: [SUPER_ADMIN_ROLE, ADMIN_ROLE, EDITOR_ROLE],
+  });
+  await createUser({
+    payload,
+    clerkClient: client,
     userEmailAddress: process.env.E2E_CLERK_SUPER_ADMIN_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_SUPER_ADMIN_USER_PHONE!,
     userPassword: process.env.E2E_CLERK_SUPER_ADMIN_USER_PASSWORD!,
-    role: SUPER_ADMIN_ROLE,
+    roles: [SUPER_ADMIN_ROLE],
   });
   await createUser({
     payload,
@@ -82,7 +92,7 @@ export const seed = async ({
     userEmailAddress: process.env.E2E_CLERK_ADMIN_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_ADMIN_USER_PHONE!,
     userPassword: process.env.E2E_CLERK_ADMIN_USER_PASSWORD!,
-    role: ADMIN_ROLE,
+    roles: [ADMIN_ROLE],
   });
   await createUser({
     payload,
@@ -90,15 +100,15 @@ export const seed = async ({
     userEmailAddress: process.env.E2E_CLERK_EDITOR_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_EDITOR_USER_PHONE!,
     userPassword: process.env.E2E_CLERK_EDITOR_USER_PASSWORD!,
-    role: EDITOR_ROLE,
+    roles: [EDITOR_ROLE],
   });
   await createUser({
     payload,
     clerkClient: client,
-    userEmailAddress: process.env.E2E_CLERK_APP_USER_EMAIL!,
-    userPhoneNumber: process.env.E2E_CLERK_APP_USER_PHONE!,
-    userPassword: process.env.E2E_CLERK_APP_USER_PASSWORD!,
-    role: null,
+    userEmailAddress: process.env.E2E_CLERK_AUTHENTICATED_USER_EMAIL!,
+    userPhoneNumber: process.env.E2E_CLERK_AUTHENTICATED_USER_PHONE!,
+    userPassword: process.env.E2E_CLERK_AUTHENTICATED_USER_PASSWORD!,
+    roles: null,
   });
 };
 
@@ -108,18 +118,27 @@ async function createUser({
   userEmailAddress,
   userPhoneNumber,
   userPassword,
-  role,
+  roles,
 }: {
   payload: Payload;
   clerkClient: ClerkClient;
   userEmailAddress: string;
   userPhoneNumber: string | null;
   userPassword: string;
-  role: Role | null;
+  roles: Role[] | null;
 }) {
   payload.logger.info(`- Creating E2E user - ${userEmailAddress} ...`);
   let user;
   try {
+    let firstName = "user";
+    if (roles) {
+      if (roles.length === 1) {
+        firstName = roles[0];
+      } else {
+        firstName = "all-roles";
+      }
+    }
+
     const createUserParams: {
       firstName: string;
       lastName: string;
@@ -128,7 +147,7 @@ async function createUser({
       password: string;
       publicMetadata?: UserPublicMetadata;
     } = {
-      firstName: role || "user",
+      firstName,
       lastName: "Test",
       emailAddress: [userEmailAddress],
       password: userPassword,
@@ -138,9 +157,9 @@ async function createUser({
       createUserParams.phoneNumber = [userPhoneNumber];
     }
 
-    if (role) {
+    if (roles) {
       createUserParams.publicMetadata = {
-        roles: [role],
+        roles,
       };
     }
 

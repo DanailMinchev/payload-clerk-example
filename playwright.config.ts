@@ -50,19 +50,28 @@ export default defineConfig({
     },
 
     {
-      name: "chromium",
+      name: "api-tests",
+      testMatch: "tests/api-tests/**/*.spec.ts",
+      dependencies: ["global setup"],
+    },
+
+    {
+      name: "app-tests - chromium",
+      testMatch: "tests/app-tests/**/*.spec.ts",
       use: { ...devices["Desktop Chrome"] },
       dependencies: ["global setup"],
     },
 
     {
-      name: "firefox",
+      name: "app-tests - firefox",
+      testMatch: "tests/app-tests/**/*.spec.ts",
       use: { ...devices["Desktop Firefox"] },
       dependencies: ["global setup"],
     },
 
     {
-      name: "webkit",
+      name: "app-tests - webkit",
+      testMatch: "tests/app-tests/**/*.spec.ts",
       use: { ...devices["Desktop Safari"] },
       dependencies: ["global setup"],
     },

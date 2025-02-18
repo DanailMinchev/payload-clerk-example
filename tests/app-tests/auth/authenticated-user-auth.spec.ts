@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("anonymous auth tests", () => {
+test.describe("authenticated user tests", () => {
   test("dashboard test", async ({ page }) => {
     await page.goto("/admin");
 
@@ -10,11 +10,11 @@ test.describe("anonymous auth tests", () => {
     await page.waitForSelector(".cl-signIn-root", { state: "attached" });
     await page
       .locator("input[name=identifier]")
-      .fill(process.env.E2E_CLERK_APP_USER_EMAIL!);
+      .fill(process.env.E2E_CLERK_AUTHENTICATED_USER_EMAIL!);
     await page.getByRole("button", { name: "Continue", exact: true }).click();
     await page
       .locator("input[name=password]")
-      .fill(process.env.E2E_CLERK_APP_USER_PASSWORD!);
+      .fill(process.env.E2E_CLERK_AUTHENTICATED_USER_PASSWORD!);
     await page.getByRole("button", { name: "Continue", exact: true }).click();
 
     await page.waitForURL("**/admin/unauthorized");
