@@ -33,7 +33,7 @@ export default function RootLayout({
         >
           <div className="min-h-screen">
             <Header />
-            <main className="mx-auto mt-10 max-w-7xl pl-4 pr-4">
+            <main className="mx-auto mt-10 max-w-7xl pr-4 pl-4">
               {children}
             </main>
             <Footer />

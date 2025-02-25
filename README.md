@@ -4,11 +4,13 @@ This is an example for Payload CMS and Clerk integration.
 
 YouTube videos:
 
+**PART 1**
+
 [![Payload and Clerk example](https://img.youtube.com/vi/7PNGNqqFlu0/0.jpg)](https://www.youtube.com/watch?v=7PNGNqqFlu0)
 
 [https://www.youtube.com/watch?v=7PNGNqqFlu0](https://www.youtube.com/watch?v=7PNGNqqFlu0)
 
-Source code on the `part-1` branch: https://github.com/DanailMinchev/payload-clerk-example/tree/feat/part-1
+Source code in the `part-1` branch: https://github.com/DanailMinchev/payload-clerk-example/tree/feat/part-1
 
 ## Getting Started
 
@@ -128,6 +130,12 @@ E2E_CLERK_AUTHENTICATED_USER_PHONE=+19735550105
 ```
 
 The above users are using test emails and test phone numbers as described in [Test emails and phones](https://clerk.com/docs/testing/test-emails-and-phones).
+
+If you want to use phone numbers, you need to enable "Phone number" in the Clerk's dashboard, otherwise seed endpoint will not work.
+
+![Phone number](./docs/assets/phone-number.png)
+
+Otherwise, leave the `E2E_CLERK_*_USER_PHONE` environment variables empty.
 
 7. Register the `E2E` users.
 
