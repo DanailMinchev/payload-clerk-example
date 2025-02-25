@@ -1,5 +1,5 @@
 import React from "react";
-import SeedDatabaseButton from "@/components/payload/elements/before-dashboard/welcome-panel/seed-database-button";
+import SeedDatabaseButton from "./seed-database-button";
 
 export const WelcomePanel: React.FC = () => {
   return (

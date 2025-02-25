@@ -1,4 +1,4 @@
-import { CollectionSlug, Payload } from "payload";
+import { CollectionSlug, Payload, PayloadRequest } from "payload";
 import { clerkClient } from "@clerk/nextjs/server";
 import { ADMIN_ROLE, EDITOR_ROLE, SUPER_ADMIN_ROLE } from "@/constants/auth";
 import { ClerkClient } from "@clerk/backend";
@@ -8,8 +8,10 @@ const collections: CollectionSlug[] = ["media", "posts"];
 
 export const seed = async ({
   payload,
+  payloadRequest,
 }: {
   payload: Payload;
+  payloadRequest: PayloadRequest;
 }): Promise<void> => {
   payload.logger.info("Seeding database...");
 
@@ -17,7 +19,7 @@ export const seed = async ({
 
   await Promise.all(
     collections.map((collection) =>
-      payload.db.deleteMany({ collection, where: {} }),
+      payload.db.deleteMany({ collection, req: payloadRequest, where: {} }),
     ),
   );
 
@@ -27,7 +29,11 @@ export const seed = async ({
         Boolean(payload.collections[collection].config.versions),
       )
       .map((collection) =>
-        payload.db.deleteVersions({ collection, where: {} }),
+        payload.db.deleteVersions({
+          collection,
+          req: payloadRequest,
+          where: {},
+        }),
       ),
   );
 
@@ -54,6 +60,7 @@ export const seed = async ({
 
   await payload.delete({
     collection: "users",
+    req: payloadRequest,
     depth: 0,
     where: {
       emailAddresses: {
@@ -72,6 +79,7 @@ export const seed = async ({
 
   await createUser({
     payload,
+    payloadRequest,
     clerkClient: client,
     userEmailAddress: process.env.E2E_CLERK_ALL_ROLES_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_ALL_ROLES_USER_PHONE!,
@@ -80,6 +88,7 @@ export const seed = async ({
   });
   await createUser({
     payload,
+    payloadRequest,
     clerkClient: client,
     userEmailAddress: process.env.E2E_CLERK_SUPER_ADMIN_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_SUPER_ADMIN_USER_PHONE!,
@@ -88,6 +97,7 @@ export const seed = async ({
   });
   await createUser({
     payload,
+    payloadRequest,
     clerkClient: client,
     userEmailAddress: process.env.E2E_CLERK_ADMIN_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_ADMIN_USER_PHONE!,
@@ -96,6 +106,7 @@ export const seed = async ({
   });
   await createUser({
     payload,
+    payloadRequest,
     clerkClient: client,
     userEmailAddress: process.env.E2E_CLERK_EDITOR_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_EDITOR_USER_PHONE!,
@@ -104,6 +115,7 @@ export const seed = async ({
   });
   await createUser({
     payload,
+    payloadRequest,
     clerkClient: client,
     userEmailAddress: process.env.E2E_CLERK_AUTHENTICATED_USER_EMAIL!,
     userPhoneNumber: process.env.E2E_CLERK_AUTHENTICATED_USER_PHONE!,
@@ -114,6 +126,7 @@ export const seed = async ({
 
 async function createUser({
   payload,
+  payloadRequest,
   clerkClient,
   userEmailAddress,
   userPhoneNumber,
@@ -121,6 +134,7 @@ async function createUser({
   roles,
 }: {
   payload: Payload;
+  payloadRequest: PayloadRequest;
   clerkClient: ClerkClient;
   userEmailAddress: string;
   userPhoneNumber: string | null;
@@ -184,6 +198,7 @@ async function createUser({
   ];
   await payload.create({
     collection: "users",
+    req: payloadRequest,
     data: {
       clerkUserId: user.id,
       isDeleted: false,
