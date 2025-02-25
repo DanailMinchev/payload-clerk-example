@@ -14,6 +14,7 @@
     "playwright:test": "dotenvx run -f .env.local -- playwright test",
     "playwright:test:debug": "dotenvx run -f .env.local -- playwright test --debug",
     "playwright:test:ui": "dotenvx run -f .env.local -- playwright test --ui",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
     "payload:generate:importmap": "payload generate:importmap",
     "payload:generate:types": "payload generate:types"
   },
@@ -26,6 +27,7 @@
     "@payloadcms/next": "3.19.0",
     "@payloadcms/payload-cloud": "3.19.0",
     "@payloadcms/richtext-lexical": "3.19.0",
+    "cross-env": "7.0.3",
     "graphql": "^16.10.0",
     "nanoid": "5.1.0",
     "next": "15.1.4",

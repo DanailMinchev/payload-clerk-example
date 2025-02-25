@@ -2,10 +2,7 @@
 
 import React, { useState } from "react";
 import { Button, toast } from "@payloadcms/ui";
-import { SUPER_ADMIN_ROLES } from "@/constants/auth";
 import { useUser } from "@clerk/nextjs";
-import { Role } from "@/types/globals";
-import { checkRoles } from "@/lib/auth-utils";
 
 const SuccessMessage: React.FC = () => <>Database seeded.</>;
 
@@ -13,13 +10,9 @@ export const SeedDatabaseButton: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSeeded, setIsSeeded] = useState(false);
   const [error, setError] = useState<null | string>(null);
-  const { isLoaded, user } = useUser();
+  const { isLoaded } = useUser();
 
-  if (
-    !isLoaded ||
-    !user?.publicMetadata?.roles ||
-    !checkRoles(SUPER_ADMIN_ROLES, user.publicMetadata.roles as Array<Role>)
-  ) {
+  if (!isLoaded) {
     return null;
   }
 
@@ -43,7 +36,7 @@ export const SeedDatabaseButton: React.FC = () => {
       toast.promise(
         new Promise((resolve, reject) => {
           try {
-            fetch("/api/next/seed", { method: "GET" })
+            fetch("/api/app/seed", { method: "GET" })
               .then((response) => {
                 if (response.ok) {
                   resolve(true);
