@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier . --write",
-    "format:ci": "prettier . --check"
+    "format:ci": "prettier . --check",
+    "update": "npx npm-check-updates -u"
   },
   "dependencies": {
     "next": "16.2.4",
@@ -16,16 +17,16 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@tailwindcss/postcss": "4.2.4",
+    "@types/node": "25.6.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.3.0",
     "eslint-config-next": "16.2.4",
     "eslint-config-prettier": "10.1.8",
     "prettier": "3.8.3",
     "prettier-plugin-tailwindcss": "0.8.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss": "4.2.4",
+    "typescript": "6.0.3"
   }
 }
