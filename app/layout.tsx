@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import {
-  ClerkProvider,
-  Show,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
+import AuthProvider from "@/providers/auth-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClerkProvider>
+        <AuthProvider>
           <header className="flex h-16 items-center justify-end gap-4 p-4">
             <Show when="signed-out">
               <SignInButton />
@@ -49,7 +44,7 @@ export default function RootLayout({
             </Show>
           </header>
           {children}
-        </ClerkProvider>
+        </AuthProvider>
       </body>
     </html>
   );
