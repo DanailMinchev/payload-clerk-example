@@ -13,6 +13,15 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    settings: {
+      // Fix for ESLint 10+: eslint-plugin-react uses context.getFilename() (legacy API)
+      // which was removed in ESLint 10 flat config. Declaring the version explicitly
+      // prevents the plugin from trying to auto-detect it and failing.
+      // see https://github.com/vercel/next.js/issues/89764#issuecomment-3928272828
+      react: { version: "19" },
+    },
+  },
 ]);
 
 export default eslintConfig;
