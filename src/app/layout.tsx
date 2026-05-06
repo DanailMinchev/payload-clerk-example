@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { Show } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SignInButton } from "@/components/clerk/sign-in-button";
+import { SignUpButton } from "@/components/clerk/sign-up-button";
+import { UserButton } from "@/components/clerk/user-button";
 import AuthProvider from "@/providers/auth-provider";
 import "./globals.css";
 
@@ -34,11 +37,7 @@ export default function RootLayout({
           <header className="flex h-16 items-center justify-end gap-4 p-4">
             <Show when="signed-out">
               <SignInButton />
-              <SignUpButton>
-                <button className="h-10 cursor-pointer rounded-full bg-purple-700 px-4 text-sm font-medium text-white sm:h-12 sm:px-5 sm:text-base">
-                  Sign Up
-                </button>
-              </SignUpButton>
+              <SignUpButton />
             </Show>
             <Show when="signed-in">
               <UserButton />
