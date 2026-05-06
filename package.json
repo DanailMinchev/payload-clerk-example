@@ -1,7 +1,10 @@
 {
   "name": "payload-clerk-example",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "private": true,
+  "description": "Payload CMS and Clerk example",
+  "license": "MIT",
+  "author": "Danail Minchev <danail.minchev@gmail.com>",
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -42,5 +45,8 @@
     "prettier-plugin-tailwindcss": "0.8.0",
     "tailwindcss": "4.2.4",
     "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=24.15.0"
   }
 }
