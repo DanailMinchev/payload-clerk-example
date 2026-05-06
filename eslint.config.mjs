@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Payload auto-generated files:
+    "src/payload-types.ts",
+    "src/payload-generated-schema.ts",
   ]),
   {
     settings: {
@@ -20,6 +23,23 @@ const eslintConfig = defineConfig([
       // prevents the plugin from trying to auto-detect it and failing.
       // see https://github.com/vercel/next.js/issues/89764#issuecomment-3928272828
       react: { version: "19" },
+    },
+    rules: {
+      "@typescript-eslint/ban-ts-comment": "warn",
+      "@typescript-eslint/no-empty-object-type": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          args: "after-used",
+          ignoreRestSiblings: false,
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^(_|ignore)",
+        },
+      ],
     },
   },
 ]);

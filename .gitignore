@@ -45,3 +45,10 @@ next-env.d.ts
 
 # Clerk
 .clerk
+
+# Payload (SQLite)
+*.db
+*.db-journal
+
+# Payload uploads (local file-storage adapter)
+/media

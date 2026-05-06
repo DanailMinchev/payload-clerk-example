@@ -2,6 +2,7 @@
   "name": "payload-clerk-example",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,20 +10,31 @@
     "lint": "eslint",
     "format": "prettier . --write",
     "format:ci": "prettier . --check",
+    "payload:generate:importmap": "payload generate:importmap",
+    "payload:generate:types": "payload generate:types",
     "update": "npx npm-check-updates -u"
   },
   "dependencies": {
     "@clerk/localizations": "4.5.8",
     "@clerk/nextjs": "7.3.0",
+    "@payloadcms/db-sqlite": "3.84.1",
+    "@payloadcms/next": "3.84.1",
+    "@payloadcms/richtext-lexical": "3.84.1",
+    "@payloadcms/ui": "3.84.1",
+    "graphql": "16.13.2",
     "next": "16.2.4",
+    "payload": "3.84.1",
     "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "react-dom": "19.2.5",
+    "sharp": "0.34.5"
   },
   "devDependencies": {
+    "@dotenvx/dotenvx": "1.65.0",
     "@tailwindcss/postcss": "4.2.4",
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "cross-env": "10.1.0",
     "eslint": "10.3.0",
     "eslint-config-next": "16.2.4",
     "eslint-config-prettier": "10.1.8",
