@@ -38,7 +38,7 @@ Next.js 16 (App Router) example wired up with [Clerk](https://clerk.com) authent
 
 Protection is enforced in `src/proxy.ts` (Next.js 16's renamed `middleware.ts`) via `createRouteMatcher` for `/admin(.*)` and `/profile(.*)`. Unauthenticated requests are redirected to `/login` because of `NEXT_PUBLIC_CLERK_SIGN_IN_URL`.
 
-`<ClerkProvider>` is wrapped in `src/providers/auth-provider.tsx` and configured with `localization={enUS}` from `@clerk/localizations`. The header in `src/app/layout.tsx` uses Clerk's `<Show when="signed-in/-out">` plus `<SignInButton>`, `<SignUpButton>`, and `<UserButton>`.
+`<ClerkProvider>` is wrapped in `src/providers/auth-provider.tsx` and configured with `localization={enUS}` from `@clerk/localizations`. The header in `src/app/(app)/layout.tsx` uses Clerk's `<Show when="signed-in/-out">` plus `<SignInButton>`, `<SignUpButton>`, and `<UserButton>`.
 
 ## Webhooks
 
@@ -48,7 +48,7 @@ To sync Clerk users to a backend (the future Payload integration):
 2. Endpoint URL: `https://<your-tunnel-or-prod-host>/api/webhooks/clerk`. For local dev, expose your machine with `ngrok http 3000` (or similar) and use that URL.
 3. Subscribe to at least `user.created`, `user.updated`, `user.deleted`.
 4. Copy the endpoint's **Signing secret** into `.env.local` as `CLERK_WEBHOOK_SIGNING_SECRET`.
-5. Trigger a test event from the dashboard. The handler in `src/app/api/webhooks/clerk/route.ts` verifies the signature with `verifyWebhook` and logs the event - extend it to write into your database.
+5. Trigger a test event from the dashboard. The handler in `src/app/(app)/api/webhooks/clerk/route.ts` verifies the signature with `verifyWebhook` and logs the event - extend it to write into your database.
 
 ## Scripts
 
