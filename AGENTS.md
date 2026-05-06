@@ -36,4 +36,9 @@ When touching Payload (`src/payload.config.ts`, `src/collections/**`, hooks, acc
 
 Auto-generated `src/payload-types.ts` and `src/app/(payload)/admin/importMap.js` must not be hand-edited — regenerate via `npm run payload:generate:types` / `npm run payload:generate:importmap`. Both files are already in `.prettierignore` and the ESLint `globalIgnores`.
 
+**Project-specific overrides** when reading the skill:
+
+- **DB adapter**: skill's `SKILL.md` Quick Start defaults to MongoDB (`mongooseAdapter`). We use SQLite (`sqliteAdapter` from `@payloadcms/db-sqlite`); see actual config at `src/payload.config.ts`. `reference/ADAPTERS.md` correctly covers SQLite + Postgres alongside Mongo — go there for adapter details rather than the SKILL.md example.
+- **Package manager**: skill examples use `pnpm` (`pnpm dev`, `pnpm install`). This project uses npm (`npm run dev`, `npm install`). Translate `pnpm` → `npm run` mentally when reading the skill. `reference/PLUGIN-DEVELOPMENT.md` leans heavily on Mongo + pnpm — only relevant if/when authoring Payload plugins.
+
 <!-- END:payload-skill -->
