@@ -27,3 +27,13 @@ Bare usages with no children (`<UserButton />`, `<SignInButton />`) are fine in 
 Do not create barrel `index.ts` re-exports for flat domain folders — import the file path directly. Empty domain folders are kept under git via `.gitkeep`; delete it when the first real file lands.
 
 <!-- END:components-convention -->
+
+<!-- BEGIN:payload-skill -->
+
+# Payload skill reference
+
+When touching Payload (`src/payload.config.ts`, `src/collections/**`, hooks, access control, REST/GraphQL endpoints, custom admin components), consult the in-repo Payload skill at `.agents/skills/payload/` (also surfaced via the symlink `.claude/skills/payload`). Start with `SKILL.md` for the Quick Reference table, then drill into `reference/` for the relevant deep-dive: `COLLECTIONS.md`, `FIELDS.md`, `HOOKS.md`, `ACCESS-CONTROL.md` (+`-ADVANCED`), `QUERIES.md`, `ADAPTERS.md`, `ENDPOINTS.md`, `PLUGIN-DEVELOPMENT.md`, `ADVANCED.md`, `FIELD-TYPE-GUARDS.md`.
+
+Auto-generated `src/payload-types.ts` and `src/app/(payload)/admin/importMap.js` must not be hand-edited — regenerate via `npm run payload:generate:types` / `npm run payload:generate:importmap`. Both files are already in `.prettierignore` and the ESLint `globalIgnores`.
+
+<!-- END:payload-skill -->
