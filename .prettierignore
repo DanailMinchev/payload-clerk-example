@@ -1,6 +1,11 @@
 .agents
 .claude
+playwright-report
+test-results
+playwright/.clerk
 
 # Payload auto-generated files
 src/payload-types.ts
+src/payload-generated-schema.ts
 src/app/(payload)/admin/importMap.js
+src/migrations/**

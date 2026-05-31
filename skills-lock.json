@@ -17,7 +17,7 @@
       "source": "clerk/skills",
       "sourceType": "github",
       "skillPath": "skills/features/clerk-billing/SKILL.md",
-      "computedHash": "03dd96165a4f47cbf978b76d975d15f7b69e5eec1fa76db556c71de3776ebf1b"
+      "computedHash": "8ac867c502c8b7e2a6928ef16a446565c884e027465a0e408e80c8e2ee301e99"
     },
     "clerk-custom-ui": {
       "source": "clerk/skills",
@@ -29,19 +29,19 @@
       "source": "clerk/skills",
       "sourceType": "github",
       "skillPath": "skills/frameworks/clerk-nextjs-patterns/SKILL.md",
-      "computedHash": "722d79f7610ff60878d5b73b8f53faa51aff729c43b44222faedc7fa926e332f"
+      "computedHash": "6c5b897dcef62550436b24b3cc9087658dd97c9ca88272ab48a5c094276d72fb"
     },
     "clerk-orgs": {
       "source": "clerk/skills",
       "sourceType": "github",
       "skillPath": "skills/features/clerk-orgs/SKILL.md",
-      "computedHash": "80afe4653f1d0bda03edb9defc168c265e6a28c4963d1ab33b443cc845305c25"
+      "computedHash": "50a514001d6e1f51dd1bf4e3b0b62336ea5209e36c76be5afe16a4445087124c"
     },
     "clerk-setup": {
       "source": "clerk/skills",
       "sourceType": "github",
       "skillPath": "skills/core/clerk-setup/SKILL.md",
-      "computedHash": "40670b1b6e109fa1a3b2d9e111642ec920409d4b3bb9afadb58b7d2f5f1019a6"
+      "computedHash": "a35fe4e4d03a71825d9880c9cd76ddcae536beed535a2be44908117b4661e749"
     },
     "clerk-testing": {
       "source": "clerk/skills",
@@ -53,7 +53,7 @@
       "source": "clerk/skills",
       "sourceType": "github",
       "skillPath": "skills/features/clerk-webhooks/SKILL.md",
-      "computedHash": "1e64996a3993027a25dcf1032a4ed13f0aa8607801fb2d1d27d653666aa9b929"
+      "computedHash": "de12deda380be19d32d62c4106a6b78736cd4d9cc6dd5b214f6039853ad89e54"
     },
     "next-browser": {
       "source": "vercel-labs/next-browser",

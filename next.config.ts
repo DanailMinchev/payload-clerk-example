@@ -8,7 +8,7 @@ const dirname = path.dirname(filename);
 
 const nextConfig: NextConfig = {
   images: {
-    localPatterns: [{ pathname: "/api/media/file/**" }],
+    localPatterns: [{ pathname: "/api/media/file/**", search: "" }],
   },
   turbopack: {
     root: path.resolve(dirname),

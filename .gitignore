@@ -43,12 +43,11 @@ next-env.d.ts
 # JetBrains
 .idea
 
-# Clerk
-.clerk
-
-# Payload (SQLite)
-*.db
-*.db-journal
-
 # Payload uploads (local file-storage adapter)
 /media
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.clerk/

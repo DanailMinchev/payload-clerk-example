@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import prettier from "eslint-config-prettier/flat";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -15,6 +16,8 @@ const eslintConfig = defineConfig([
     // Payload auto-generated files:
     "src/payload-types.ts",
     "src/payload-generated-schema.ts",
+    "src/app/(payload)/admin/importMap.js",
+    "src/migrations/**/*.ts",
   ]),
   {
     settings: {
@@ -42,6 +45,7 @@ const eslintConfig = defineConfig([
       ],
     },
   },
+  prettier,
 ]);
 
 export default eslintConfig;
